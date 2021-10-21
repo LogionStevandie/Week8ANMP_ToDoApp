@@ -1,5 +1,6 @@
 package id.ac.ubaya.informatika.todoapp.model
 
+import androidx.appcompat.widget.DialogTitle
 import androidx.room.*
 
 @Dao
@@ -7,7 +8,7 @@ interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg todo: Todo)
 
-    @Query("SELECT * FROM todo_table")
+    @Query("SELECT * FROM todo_table ORDER BY priority DESC")
     suspend fun selectAllTodo():List<Todo>
 
     @Query("SELECT * FROM todo_table WHERE uuid = :id")
@@ -15,4 +16,7 @@ interface TodoDao {
 
     @Delete
     suspend fun deleteTodo(todo: Todo)
+
+    @Query("UPDATE todo_table SET judul = :title, notes= :notes, priority=:priority WHERE uuid = :uuid")
+    suspend fun update(title: String, notes: String, priority: Int, uuid: Int)
 }
