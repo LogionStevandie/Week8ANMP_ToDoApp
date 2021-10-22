@@ -8,7 +8,7 @@ interface TodoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg todo: Todo)
 
-    @Query("SELECT * FROM todo_table ORDER BY priority DESC")
+    @Query("SELECT * FROM todo_table WHERE is_done = 0 ORDER BY priority DESC")
     suspend fun selectAllTodo():List<Todo>
 
     @Query("SELECT * FROM todo_table WHERE uuid = :id")
