@@ -32,6 +32,14 @@ class ListTodoViewModel(application: Application):AndroidViewModel(application),
         }
     }
 
+    fun updateIsDone(done: Int, uuid: Int){
+        launch {
+            val db = buildDB(getApplication())
+            db.todoDao().updateIsDone(done, uuid)
+            todoLD.value = db.todoDao().selectAllTodo()
+        }
+    }
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 

@@ -11,4 +11,5 @@
     <string name="highpriority">High Priority</string>
     <string name="mediumpriority">Medium Priority</string>
     <string name="lowpriority">Low Priority</string>
+    <string name="done">Done</string>
 </resources>
