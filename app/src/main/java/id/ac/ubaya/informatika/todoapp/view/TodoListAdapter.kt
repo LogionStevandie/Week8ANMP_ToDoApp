@@ -19,9 +19,6 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnCLick:(Any) -> 
         notifyDataSetChanged()
     }
 
-    fun updateIsDone(done: Int, uuid: Int){
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -41,6 +38,7 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnCLick:(Any) -> 
 
         holder.view.checkTask.setOnCheckedChangeListener { compoundButton, isChecked ->
             if (isChecked) {
+                compoundButton.isChecked = false
                 adapterOnCLick(todoList[position])
             }
             //compoundButton.isChecked = false
@@ -49,6 +47,7 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnCLick:(Any) -> 
 
         holder.view.checkBoxDone.setOnCheckedChangeListener { compoundButton, b ->
             if (b){
+                compoundButton.isChecked = false
                 adapterOnClickUpdate(1,todoList[position].uuid)
             }
             else{
