@@ -37,12 +37,19 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnCLick:(Any) -> 
         }
 
         holder.view.checkTask.setOnCheckedChangeListener { compoundButton, isChecked ->
-            if (isChecked) {
-                compoundButton.isChecked = false
-                adapterOnCLick(todoList[position])
-            }
+            //if (isChecked) {
+            //    compoundButton.isChecked = false
+            //    adapterOnCLick(todoList[position])
+            //}
             //compoundButton.isChecked = false
             //adapterOnCLick(todoList[position])
+            if (isChecked){
+                compoundButton.isChecked = false
+                adapterOnClickUpdate(1,todoList[position].uuid)
+            }
+            else{
+                adapterOnClickUpdate(0,todoList[position].uuid)
+            }
         }
 
         holder.view.checkBoxDone.setOnCheckedChangeListener { compoundButton, b ->
